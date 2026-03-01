@@ -188,7 +188,7 @@
       "name": "match_status",
       "schema": "public",
       "values": [
-        "schedule",
+        "scheduled",
         "live",
         "finished"
       ]
