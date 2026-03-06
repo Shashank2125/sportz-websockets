@@ -1,4 +1,4 @@
-import {WebSocket} from 'ws';
+import {WebSocket,WebSocketServer} from 'ws';
 function sendJson(socket,payload){
     if(socket.readyState !== WebSocket.OPEN) return;
     socket.send(JSON.stringify(payload));
@@ -6,14 +6,14 @@ function sendJson(socket,payload){
 }
 
 function broadcast(wss,payload){
-    for (const client in wss.clients){
+    for (const client of wss.clients){
         if(client.readyState !== WebSocket.OPEN)return;
         client.send(JSON.stringify(payload));
     }
 }
 
 export function attachWebSocketServer(server){
-    const wss=new WebSocket({
+    const wss=new WebSocketServer({
         server,//http server from express so the websocket can attach itself
         //to the server avoiding seperate port for wss
         path:'/ws',//seperate traffic for ws
