@@ -24,7 +24,7 @@ const {broadcastMatchCreated}=attachWebSocketServer(server);
 app.locals.broadcastMatchCreated=broadcastMatchCreated;
 
 server.listen(PORT, HOST,() => {
-    const baseUrl=HOST==='0.0.0.0'?`http://localhost${PORT}`:`http://${HOST}:${PORT}`;
+    const baseUrl=HOST==='0.0.0.0'?`http://localhost:${PORT}`:`http://${HOST}:${PORT}`;
     console.log(`Server started at ${baseUrl}`);
     //replace http server to ws server
     console.log(`Websocket server is running on ${baseUrl.replace('http','ws')}/ws`);
