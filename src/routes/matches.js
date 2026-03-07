@@ -46,6 +46,10 @@ matchRouter.post('/',async (req,res)=>{
             awayScore:awayScore ??0,
             status:getMatchStatus(startTime,endTime)
         }).returning();
+        //broadcast the message to the client after db insertion
+        if(res.app.locals.broadcastMatchCreated){
+            res.app.locals.broadcastMatchCreated(event);
+        }
 
         res.status(201).json({data:event});
     }catch (e) {
