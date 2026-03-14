@@ -2,6 +2,7 @@ import express from 'express';
 import {matchRouter} from "./routes/matches.js";
 import http from "http";
 import {attachWebSocketServer} from "./ws/server.js";
+import {securityMiddleware} from "./arcjet.js";
 
 //creating port and host for http server
 const PORT =Number(process.env.PORT || 8000);
@@ -12,9 +13,13 @@ const server=http.createServer(app)
 
 app.use(express.json());
 
+//middleware arcjet=protecting all of our rest api
+app.use(securityMiddleware());
+
 app.get('/', (req, res) => {
     res.send('Hello From Express Server!');
 });
+
 
 //router
 app.use('/matches',matchRouter);
