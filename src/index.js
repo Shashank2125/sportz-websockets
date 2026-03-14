@@ -13,11 +13,13 @@ const server=http.createServer(app)
 
 app.use(express.json());
 
+//middleware arcjet=protecting all of our rest api
+app.use(securityMiddleware());
+
 app.get('/', (req, res) => {
     res.send('Hello From Express Server!');
 });
-//middleware arcjet=protecting all of our rest api
-app.use(securityMiddleware());
+
 
 //router
 app.use('/matches',matchRouter);
