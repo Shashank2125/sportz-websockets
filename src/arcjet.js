@@ -6,7 +6,7 @@ const arcjetMode=process.env.ARCJET_MODE === 'DRY_RUN' ? 'DRY_RUN' : 'LIVE';
 if(!arcjetKey) throw new Error('ARCJET_KEY environment variable is missing.');
 
 
-export const httpArcjet=arcjetKey?
+export const httpArcjet=arcjetKey ?
     arcjet({
     key: arcjetKey,
         rules:[
@@ -20,6 +20,7 @@ export const httpArcjet=arcjetKey?
     }):null;
 export const wsArcjet=arcjetKey?
     arcjet({
+        key: arcjetKey,
         rules:[
             //this shield protect us from common attacks like
             //sql injection and xss with analyzing incoming request
