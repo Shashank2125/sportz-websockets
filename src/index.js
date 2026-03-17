@@ -29,6 +29,7 @@ app.use('/matches/:id/commentary',commentaryRouter);
 
 const {broadcastMatchCreated}=attachWebSocketServer(server);
 app.locals.broadcastMatchCreated=broadcastMatchCreated;
+app.locals.broadcastCommentary=broadcastMatchCreated;
 
 server.listen(PORT, HOST,() => {
     const baseUrl=HOST==='0.0.0.0'?`http://localhost:${PORT}`:`http://${HOST}:${PORT}`;
